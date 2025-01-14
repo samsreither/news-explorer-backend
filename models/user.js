@@ -1,6 +1,6 @@
 // models are for storing files with described schemas and models
 
-const mongoose = require("monggose");
+const mongoose = require("mongoose");
 const validator = require('validator');
 
 
