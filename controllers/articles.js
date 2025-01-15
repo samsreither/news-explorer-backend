@@ -43,7 +43,7 @@ module.exports.addArticle = (req, res, next) => {
 module.exports.removeArticle = (req, res, next) => {
   Article.findById(req.params.articleId)
     .select('+owner')
-    .orFail(new NotFoundError('No item with that id'))
+    // .orFail(new NotFoundError('No item with that id'))
     .then((article) => {
       if (article.owner.toString() === req.user._id) {
         Article.findByIdAndDelete(article._id)
