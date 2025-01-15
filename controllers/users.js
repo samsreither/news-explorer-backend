@@ -10,12 +10,16 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 // retrieves currently authenticated user's info
 module.exports.getCurrentUser = (req, res, next) => {
+  console.log('Authenticated user:', req.user); //log the user ID
+
   User.findById(req.user._id)
-    .orFail(new NotFoundError('No user with that id'))
+    // .orFail(new NotFoundError('No user with that id'))
     .then((user) => {
       res.send({ data: user });
     })
     .catch((err) => {
+      console.error('Error finding user:', err.message);
+      console.error(err.stack); // log the error
       next(err);
     });
 };
